@@ -1,31 +1,41 @@
 {
-    "ReRoutes": [
-      {
-        "DownstreamPathTemplate": "/api/user/{everything}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 5001
-          }
-        ],
-        "UpstreamPathTemplate": "/appuser/{everything}",
-        "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-      },
-      {
-        "DownstreamPathTemplate": "/api/{everything}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 5002
-          }
-        ],
-        "UpstreamPathTemplate": "/api/{everything}",
-        "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-      }
-    ],
-    "GlobalConfiguration": {
-  
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/user/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/appuser/{everything}",
+      "UpstreamHttpMethod": ["Get", "Post", "Put", "Delete"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{everything}",
+      "UpstreamHttpMethod": ["Get", "Post", "Put", "Delete"]
+    },
+    {
+      "DownstreamPathTemplate": "/{catchAll}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/{catchAll}",
+      "UpstreamHttpMethod": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
     }
-  }
+  ],
+  "GlobalConfiguration": {}
+}
