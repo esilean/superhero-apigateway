@@ -1,6 +1,10 @@
 # Application
 *.db
 appsettings.json
+appsettings.Production.json
+configuration.json
+configuration.Production.json
+publish
 
 # misc
 .DS_Store

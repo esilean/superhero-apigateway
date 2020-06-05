@@ -10,7 +10,12 @@
         }
       ],
       "UpstreamPathTemplate": "/appuser/{everything}",
-      "UpstreamHttpMethod": ["Get", "Post", "Put", "Delete"]
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ]
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -22,7 +27,12 @@
         }
       ],
       "UpstreamPathTemplate": "/api/{everything}",
-      "UpstreamHttpMethod": ["Get", "Post", "Put", "Delete"]
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ]
     },
     {
       "DownstreamPathTemplate": "/{catchAll}",
@@ -34,7 +44,13 @@
         }
       ],
       "UpstreamPathTemplate": "/{catchAll}",
-      "UpstreamHttpMethod": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ]
     }
   ],
   "GlobalConfiguration": {}

@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
@@ -36,7 +29,7 @@ namespace API
                     policy
                         .AllowAnyHeader()
                         .AllowAnyMethod()
-                        .WithOrigins("http://localhost:3000").AllowCredentials();
+                        .WithOrigins(Configuration["ActivitiesApp"]).AllowCredentials();
                 });
             });
 
@@ -50,8 +43,20 @@ namespace API
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
+            app.UseXContentTypeOptions();
+            app.UseReferrerPolicy(opt => opt.NoReferrer());
+            app.UseXXssProtection(opt => opt.EnabledWithBlockMode());
+            app.UseXfo(opt => opt.Deny());
+            app.UseCspReportOnly(opt => opt
+               .BlockAllMixedContent()
+               .StyleSources(s => s.Self())
+               .FontSources(s => s.Self())
+               .FormActions(s => s.Self())
+               .FrameAncestors(s => s.Self())
+               .ImageSources(s => s.Self())
+               .ScriptSources(s => s.Self())
+                );
 
             app.UseRouting();
             app.UseCors("CorsPolicy");
@@ -62,7 +67,7 @@ namespace API
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("API GATEWAY IS RUNNING!");
+                    await context.Response.WriteAsync("SUPER HERO API GATEWAY IS RUNNING! MYSQL!");
                 });
             });
 
